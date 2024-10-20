@@ -1,0 +1,11 @@
+# config.yaml
+
+dataset:
+  name: "wikitext"
+  version: "wikitext-2-raw-v1"
+  dataset_save_path: "DATA/preprocessed_wikitext-2"
+
+preprocessing:
+  remove_non_ascii: true
+  lowercase: true
+  remove_extra_spaces: true

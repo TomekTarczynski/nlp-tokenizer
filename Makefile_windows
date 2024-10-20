@@ -1,0 +1,43 @@
+# Makefile for Windows
+
+# Path to virtual environment
+VENV_DIR = venv
+# Python interpreter for the virtual environment
+PYTHON = $(VENV_DIR)\Scripts\python.exe
+# Path to requirements file
+REQUIREMENTS = requirements.txt
+
+# Define the directory to store all data
+DATA_DIR = DATA
+
+# Target to create the virtual environment
+.PHONY: venv
+venv:
+	python -m venv $(VENV_DIR)
+
+# Target to install the required libraries
+.PHONY: install
+install: venv
+	$(PYTHON) -m pip install --upgrade pip
+	$(PYTHON) -m pip install -r $(REQUIREMENTS)
+
+# Target to preprocess the dataset
+.PHONY: preprocess
+preprocess: install
+	$(PYTHON) main.py
+
+# Target to clean up the environment and data
+.PHONY: clean
+clean:
+	rmdir /S /Q $(VENV_DIR)
+	rmdir /S /Q $(DATA_DIR)
+
+# Target to clean the virtual environment (but keep the data)
+.PHONY: clean_venv
+clean_venv:
+	rmdir /S /Q $(VENV_DIR)
+
+# Target to clean the data (but keep the virtual environment)
+.PHONY: clean_data
+clean_data:
+	rmdir /S /Q $(DATA_DIR)
