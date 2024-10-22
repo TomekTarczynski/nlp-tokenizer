@@ -1,2 +1,4 @@
 datasets==3.0.1
 PyYAML==6.0.2
+tokenizers==0.20.1
+transformers==4.45.2
